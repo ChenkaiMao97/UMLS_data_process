@@ -1,0 +1,64 @@
+potentially useful rela
+
+DISEASE
+'35226', 'disease_has_finding'
+'22806', 'disease_excludes_finding'
+
+'35583', 'disease_has_associated_anatomic_site'
+
+
+'10792', 'disease_may_have_cytogenetic_abnormality'
+'17282', 'disease_excludes_abnormal_cell'
+'47710', 'disease_has_abnormal_cell'
+'18426', 'disease_has_normal_cell_origin'
+'19030', 'disease_has_normal_tissue_origin'
+
+TREATMENT
+'6250', 'positively_regulates'
+'6276', 'negatively_regulates'
+'7188', 'regulates'
+'13879', 'may_treat'
+
+DRUG
+'10849', 'has_contraindicated_drug'
+
+GENE
+'13332', 'gene_is_element_in_pathway'
+'13448', 'gene_product_is_element_in_pathway'
+'18306', 'gene_encodes_gene_product'
+'21141', 'gene_product_plays_role_in_biological_process'
+'37173', 'gene_plays_role_in_process'
+
+'4902', 'disease_mapped_to_gene'
+'5022', 'gene_product_has_associated_anatomy'
+
+SYMPTOM
+'117702', 'has_manifestation'
+
+CAUSE
+'53828', 'has_pathological_process'
+'17424', 'has_branch'
+'17163', 'has_temporal_context'
+'91273', 'has_time_aspect'
+
+'4720', 'related_to'
+'8628', 'occurs_after'
+'10399', 'cause_of'
+'10442', 'evaluation_of'
+'14804', 'associated_finding_of'
+'16421', 'disease_may_have_finding'
+'89911', 'causative_agent_of'
+
+OTHER
+'40182', 'occurs_in'
+'57840', 'associated_with'
+'72821', 'analyzes'
+'74230', 'alias_of'
+'81771', 'measures'
+'201126', 'same_as'
+'214916', 'concept_in_subset'
+'355499', 'method_of'
+'690421', 'mapped_to'
+'393255', 'classified_as'
+
+['disease_has_finding','disease_excludes_finding','disease_has_associated_anatomic_site','positively_regulates', 'negatively_regulates', 'regulates','may_treat', 'has_contraindicated_drug' ,'gene_is_element_in_pathway','gene_product_is_element_in_pathway', 'gene_encodes_gene_product', 'gene_product_plays_role_in_biological_process', 'gene_plays_role_in_process', 'has_manifestation', 'has_pathological_process', 'has_branch', 'has_temporal_context', 'has_time_aspect', 'related_to', 'occurs_after', 'cause_of', 'evaluation_of', 'associated_finding_of', 'disease_may_have_finding', 'causative_agent_of']

@@ -1,0 +1,51 @@
+concept groups:
+
+disease_has_finding
+disease_excludes_finding
+disease_may_have_finding						x 3
+disease_has_associated_anatomic_site    		x 2
+
+disease_mapped_to_gene							x 3
+disease_may_have_cytogenetic_abnormality		x 3
+disease_excludes_abnormal_cell					x 3
+disease_has_abnormal_cell						x 3
+disease_has_normal_cell_origin					x 3
+disease_has_normal_tissue_origin				x 3
+
+concept_in_subset								x 3
+mapped_to
+
+
+
+positively_regulates
+negatively_regulates
+regulates
+
+
+
+may_treat
+has_contraindicated_drug
+related_to
+same_as
+concept_in_subset
+mapped_to
+
+
+gene_is_element_in_pathway
+gene_plays_role_in_process
+concept_in_subset
+
+
+gene_product_is_element_in_pathway
+gene_encodes_gene_product
+gene_product_plays_role_in_biological_process
+gene_product_has_associated_anatomy
+gene_plays_role_in_process
+
+
+has_pathological_process
+occurs_after
+causative_agent_of
+occurs_in
+same_as
+mapped_to
