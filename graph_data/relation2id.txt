@@ -1,0 +1,6 @@
+5
+has_manifestation	0
+disease_has_finding	1
+disease_excludes_finding	2
+occurs_after	3
+associated_finding_of	4
