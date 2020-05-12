@@ -1,4 +1,5 @@
 import mysql.connector
+import random 
 
 mydb = mysql.connector.connect(
 	host='127.0.0.1', 
@@ -9,11 +10,12 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor(buffered=True)
 
-RELA = 'disease_has_abnormal_cell'
+RELA = 'associated_with'
 
-mycursor.execute("SELECT * FROM MRREL WHERE RELA=%s LIMIT 10;", (RELA,))
+mycursor.execute("SELECT * FROM MRREL WHERE RELA=%s;", (RELA,))
 
 isa_data_all = mycursor.fetchall()
+random.shuffle(isa_data_all)
 for isa_data in isa_data_all:
 	CUI1 = isa_data[0]
 	CUI2 = isa_data[4]

@@ -4,3 +4,4 @@ relas/classified_as.csv
 relas/method_of.csv
 relas/concept_in_subset.csv
 relas/same_as.csv
+relas/isa.csv

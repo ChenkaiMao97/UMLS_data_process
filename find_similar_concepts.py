@@ -18,18 +18,31 @@ import random
 import pandas as pd
 import numpy as np
 import progressbar
+import mysql.connector
 
-with open('isa_dict.json') as file:
+with open('isa/isa_dict.json') as file:
 	rela_dict = json.loads(file.read())
 
-with open('CUI1.json') as file:
+with open('isa/CUI1.json') as file:
 	CUI1_list = json.loads(file.read())
 
-with open('CUI2.json') as file:
+with open('isa/CUI2.json') as file:
 	CUI2_list = json.loads(file.read())
 
 
-def find_similar(target, corpus, n):
+mydb = mysql.connector.connect(
+	host='127.0.0.1', 
+	user= 'root', 			# change to your user name,
+	password = 'mck19970824!',		# change to your password
+	database='umls',	# change to your database name
+	auth_plugin='mysql_native_password')
+
+mycursor = mydb.cursor(buffered=True)
+
+RELA = 'isa'
+
+
+def find_common_words(target, corpus, n):
 	# find top n phrases in corpus that contains the most common words as the target
 	target_words = set(target.split())
 
@@ -44,21 +57,51 @@ def find_similar(target, corpus, n):
 			top_n_words.sort(key=lambda x: x[0], reverse = True)
 	return top_n_words
 
-####### test #######
+def find_other_relations(target, CUI_number):
+	print('\nFind all relationships for a UMLS concept.')
+	mycursor.execute("SELECT * FROM mrrel WHERE cui1 = %s AND RELA != %s;", (target, RELA))
+	rela_data = mycursor.fetchall()
+	for x in rela_data:
+		print(x)
+	return rela_data
+
+####### test for find_common_words#######
+# n = 10
+# while True:
+# 	index = random.randint(0,len(CUI1_list)-1)
+# 	CUI1_string = CUI1_list[index]
+# 	print("randomly selected CUI1 string: '%s'" % CUI1_string)
+# 	top_n_words = find_common_words(CUI1_string,CUI2_list,n)
+# 	print('top %i' % n, ' similar phrases in CUI2_list are:')
+# 	for i in top_n_words:
+# 		print(i)
+# 	print('The actual isa relationships are:')
+# 	for i in rela_dict[CUI1_string]:
+# 		print(i)
+# 	print('\nso false relations could be:')
+# 	for i in top_n_words:
+# 		if(i[1] not in rela_dict[CUI1_string]):
+# 			print(i[1])
+# 	print("\n")
+# 	a = input()
+#####################
+
+####### test for find_other_relations#######
 n = 10
 while True:
 	index = random.randint(0,len(CUI1_list)-1)
 	CUI1_string = CUI1_list[index]
 	print("randomly selected CUI1 string: '%s'" % CUI1_string)
-	top_n_words = find_similar(CUI1_string,CUI2_list,n)
-	print('top %i' % n, ' similar phrases in CUI2_list are:')
-	for i in top_n_words:
+	top_n_relas = find_other_relations(CUI1_string,1)
+	b = input()
+	print('top %i' % n, ' other relations are:')
+	for i in top_n_relas:
 		print(i)
 	print('The actual isa relationships are:')
 	for i in rela_dict[CUI1_string]:
 		print(i)
 	print('\nso false relations could be:')
-	for i in top_n_words:
+	for i in top_n_relas:
 		if(i[1] not in rela_dict[CUI1_string]):
 			print(i[1])
 	print("\n")
@@ -82,7 +125,7 @@ for i in range(data_N):
 	# find similar to CUI1
 	index = random.randint(0,len(CUI1_list)-1)
 	CUI1_string = CUI1_list[index]
-	top_n_words = find_similar(CUI1_string,CUI2_list,n)
+	top_n_words = find_common_words(CUI1_string,CUI2_list,n)
 	
 	false_concepts_pool = []
 	for i in top_n_words:
@@ -98,7 +141,7 @@ for i in range(data_N):
 	# find similar to CUI2
 	index = random.randint(0,len(CUI2_list)-1)
 	CUI2_string = CUI2_list[index]
-	top_n_words = find_similar(CUI2_string,CUI1_list,n)
+	top_n_words = find_common_words(CUI2_string,CUI1_list,n)
 	
 	false_concepts_pool = []
 	for i in top_n_words:
