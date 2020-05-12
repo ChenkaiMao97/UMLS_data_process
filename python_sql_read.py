@@ -10,7 +10,7 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor(buffered=True)
 
-RELA = 'associated_with'
+RELA = 'disease_has_finding'
 
 mycursor.execute("SELECT * FROM MRREL WHERE RELA=%s;", (RELA,))
 
@@ -20,7 +20,7 @@ for isa_data in isa_data_all:
 	CUI1 = isa_data[0]
 	CUI2 = isa_data[4]
 
-	print("\ndisplay the relationship in English:")
+	# print("\ndisplay the relationship in English:")
 	mycursor.execute("SELECT str from mrconso b WHERE b.cui=%s AND b.ts = 'P' AND b.stt = 'PF' AND b.ispref = 'Y' AND b.lat = 'ENG';",(CUI1,))
 	CUI1_string = mycursor.fetchall()
 	mycursor.execute("SELECT str from mrconso b WHERE b.cui=%s AND b.ts = 'P' AND b.stt = 'PF' AND b.ispref = 'Y' AND b.lat = 'ENG';",(CUI2,))

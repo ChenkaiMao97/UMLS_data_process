@@ -4,11 +4,11 @@ import numpy as np
 import random
 
 path = 'relas/'
-names = ['disease_has_finding','has_contraindicated_drug' ,'causative_agent_of', 'may_treat', 'associated_with', 'disease_excludes_finding','disease_has_associated_anatomic_site','positively_regulates', 'negatively_regulates', 'regulates', 'gene_is_element_in_pathway','gene_product_is_element_in_pathway', 'gene_encodes_gene_product', 'gene_product_plays_role_in_biological_process', 'gene_plays_role_in_process',
-		 'has_manifestation', 'has_pathological_process', 'has_branch', 'has_temporal_context', 'has_time_aspect', 'related_to', 'occurs_after', 'cause_of', 'evaluation_of', 'associated_finding_of', 'disease_may_have_finding', 'occurs_in',  'analyzes', 'alias_of', 'measures', 'same_as', 'concept_in_subset', 'method_of', 'mapped_to',
-		 'classified_as', 'disease_mapped_to_gene', 'gene_product_has_associated_anatomy', 'contains', 'includes', 'used_by', 'has_access', 'used_for', 'disease_may_have_cytogenetic_abnormality', 'disease_excludes_abnormal_cell', 'disease_has_abnormal_cell', 'disease_has_normal_cell_origin', 'disease_has_normal_tissue_origin']
+# names = ['has_manifestation', 'disease_has_finding', 'occurs_after', 'disease_excludes_finding', 'associated_finding_of', 'has_contraindicated_drug' ,'causative_agent_of', 'may_treat', 'associated_with', 'disease_has_associated_anatomic_site','positively_regulates', 'negatively_regulates', 'regulates', 'gene_is_element_in_pathway','gene_product_is_element_in_pathway', 'gene_encodes_gene_product', 'gene_product_plays_role_in_biological_process', 'gene_plays_role_in_process',
+# 		  'has_pathological_process', 'has_branch', 'has_temporal_context', 'has_time_aspect', 'related_to',  'cause_of', 'evaluation_of',  'disease_may_have_finding', 'occurs_in',  'analyzes', 'alias_of', 'measures', 'same_as', 'concept_in_subset', 'method_of', 'mapped_to',
+# 		 'classified_as', 'disease_mapped_to_gene', 'gene_product_has_associated_anatomy', 'contains', 'includes', 'used_by', 'has_access', 'used_for', 'disease_may_have_cytogenetic_abnormality', 'disease_excludes_abnormal_cell', 'disease_has_abnormal_cell', 'disease_has_normal_cell_origin', 'disease_has_normal_tissue_origin']
 # names = ['train', 'dev', 'test']
-
+names = ['has_manifestation', 'disease_has_finding', 'occurs_after', 'disease_excludes_finding', 'associated_finding_of']
 # DISEASE concept group: (x13)
 # names = ['disease_has_finding','disease_excludes_finding','disease_may_have_finding','disease_has_associated_anatomic_site','disease_mapped_to_gene','disease_may_have_cytogenetic_abnormality','disease_excludes_abnormal_cell','disease_has_abnormal_cell','disease_has_normal_cell_origin','disease_has_normal_tissue_origin']
 
@@ -85,7 +85,7 @@ def shared_ratio_two_files(name1, name2):
 			if row[2] not in nodes2:
 				nodes2.add(row[2])
 			edge_count2+=1
-	if(len(nodes1 & nodes2)/min(len(nodes1),len(nodes2))>0.1):
+	if(len(nodes1 & nodes2)/min(len(nodes1),len(nodes2))>0):
 		print('{:40s} and {:40} ratio1: {:1.3f}		ratio2: {:1.3f}		total edge_ratio: {:1.3f} 		overlap: {:1.3f}'.format(name1, name2, edge_count1/len(nodes1), edge_count2/len(nodes2), (edge_count1 + edge_count2)/len(nodes1 | nodes2),len(nodes1 & nodes2)/min(len(nodes1),len(nodes2))))
 
 # for name in names:
