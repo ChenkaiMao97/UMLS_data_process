@@ -12,9 +12,9 @@ mydb = mysql.connector.connect(
 	database='umls',	# change to your database name
 	auth_plugin='mysql_native_password')
 
-######## hyperparameters, change these! ###########
-RELA_list = ['disease_mapped_to_gene', 'gene_product_has_associated_anatomy', 'contains', 'includes', 'used_by', 'has_access', 'used_for']
-file_path = '../ML_data/'
+######## hyperparameters, change these! ###########z
+RELA_list = ['mapped_to']
+file_path = './relas/'
 ###################################################
 
 for RELA in RELA_list:
@@ -46,6 +46,6 @@ for RELA in RELA_list:
 	df1 = pd.DataFrame(np.array([cui1_list,cui2_list]).T,
 	                   columns=['CUI1', 'CUI2'])
 
-	df1.to_csv(RELA+'.csv')
+	df1.to_csv(file_path+RELA+'.csv')
 
 
